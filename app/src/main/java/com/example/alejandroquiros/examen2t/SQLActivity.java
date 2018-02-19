@@ -1,5 +1,6 @@
 package com.example.alejandroquiros.examen2t;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -58,12 +59,16 @@ public class SQLActivity extends AppCompatActivity {
                     lugar.nombre = (String) postSnapshot.child("nombre").getValue();
                     lugar.Lat = (Double) postSnapshot.child("Lat").getValue();
                     lugar.Lon = (Double) postSnapshot.child("Lon").getValue();
-                    Toast.makeText(SQLActivity.this, ""+lugar.Lon, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SQLActivity.this, ""+lugar.Lon, Toast.LENGTH_SHORT).show();
 
                     databaseHandler.addContact(lugar);
                     Log.v("ContactoSQL", " Contactos: "+databaseHandler.getAllContacts());
 
+
+
+
                 }
+                startActivity(new Intent(SQLActivity.this, MapsActivity.class));
             }
 
 
