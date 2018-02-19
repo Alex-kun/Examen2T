@@ -2,6 +2,7 @@ package com.example.alejandroquiros.examen2t;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,6 +16,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public List<Lugar> lugares;
     //Handler del SQL Lite
     DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
@@ -26,6 +28,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        lugares = databaseHandler.getAllContacts();
+
+        Toast.makeText(this, "Cantidad: "+lugares.size(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "Nombre: "+lugares.get(0).getNombre(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Longitud: "+lugares.get(0).getLon(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Latitud: "+lugares.get(0).getLat(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -49,13 +59,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        List<Lugar> lugares = databaseHandler.getAllContacts();
 
 
-        for(int l=0; l<=databaseHandler.getAllContacts().size(); l++){
-            LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
-            mMap.addMarker(new MarkerOptions().position(sydney).title(lugares.get(l).getNombre());
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
+
+        for(int l=0; l<lugares.size(); l++){
+
+            //Toast.makeText(this, "Nombre: "+lugares.get(l).getNombre(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Longitud: "+lugares.get(l).getLon(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Latitud: "+lugares.get(l).getLat(), Toast.LENGTH_SHORT).show();
+//            LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
+//            mMap.addMarker(new MarkerOptions().position(p).title(lugares.get(l).getNombre()));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
         }
 
     }
