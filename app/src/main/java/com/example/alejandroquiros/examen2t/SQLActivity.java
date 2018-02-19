@@ -24,6 +24,12 @@ public class SQLActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+       //Descarga de datos de firebase
+
+
+
+
     }
 
 }
