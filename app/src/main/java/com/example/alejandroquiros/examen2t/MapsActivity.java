@@ -67,9 +67,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Toast.makeText(this, "Nombre: "+lugares.get(l).getNombre(), Toast.LENGTH_SHORT).show();
             //Toast.makeText(this, "Longitud: "+lugares.get(l).getLon(), Toast.LENGTH_SHORT).show();
             //Toast.makeText(this, "Latitud: "+lugares.get(l).getLat(), Toast.LENGTH_SHORT).show();
-//            LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
-//            mMap.addMarker(new MarkerOptions().position(p).title(lugares.get(l).getNombre()));
-//            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
+            LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
+            mMap.addMarker(new MarkerOptions().position(p).title(lugares.get(l).getNombre()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
         }
 
     }

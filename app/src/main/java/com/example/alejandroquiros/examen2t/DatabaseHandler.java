@@ -69,7 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, ""); // Contact ID
+        values.put(KEY_ID, numId); // Contact ID
         values.put(KEY_LAT, lugar.getLat()); // Contact lat
         values.put(KEY_LON, lugar.getLon()); // Contact lon
         values.put(KEY_NOMBRE, lugar.getNombre()); // Contact name
@@ -108,9 +108,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Lugar lugar = new Lugar();
-                lugar.setLat(cursor.getDouble(0));
-                lugar.setLon(cursor.getDouble(1));
-                lugar.setNombre(cursor.getString(2));
+                lugar.setLat(cursor.getDouble(1));
+                lugar.setLon(cursor.getDouble(2));
+                lugar.setNombre(cursor.getString(3));
                 // Adding contact to list
                 contactList.add(lugar);
             } while (cursor.moveToNext());
