@@ -7,7 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SQLActivity extends AppCompatActivity {
+
+    private DatabaseReference mDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,7 @@ public class SQLActivity extends AppCompatActivity {
         });
 
        //Descarga de datos de firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
 

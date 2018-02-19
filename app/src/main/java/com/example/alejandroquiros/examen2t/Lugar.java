@@ -6,9 +6,9 @@ package com.example.alejandroquiros.examen2t;
 
 public class Lugar {
 
-    Long lat;
-    Long lon;
-    String nombre;
+    public Long lat;
+    public Long lon;
+    public String nombre;
 
     Lugar(){
 
