@@ -48,17 +48,17 @@ public class SQLActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.e("Count " ,""+snapshot.getChildrenCount());
-                Toast.makeText(SQLActivity.this, ""+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
+
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Log.v("FirebaseData", ""+postSnapshot.child("lat").getValue());
+                    Log.v("FirebaseData", ""+postSnapshot.child("Lat").getValue());
 
 
                     Lugar lugar = new Lugar();
                     lugar.nombre = (String) postSnapshot.child("nombre").getValue();
-                    lugar.lat = (Long) postSnapshot.child("lat").getValue();
-                    lugar.lon = (Long) postSnapshot.child("lon").getValue();
-                    Toast.makeText(SQLActivity.this, ""+lugar.lon, Toast.LENGTH_SHORT).show();
+                    lugar.Lat = (Double) postSnapshot.child("Lat").getValue();
+                    lugar.Lon = (Double) postSnapshot.child("Lon").getValue();
+                    Toast.makeText(SQLActivity.this, ""+lugar.Lon, Toast.LENGTH_SHORT).show();
 
                 }
             }
