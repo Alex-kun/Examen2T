@@ -9,22 +9,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
+
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+
 
 public class SQLActivity extends AppCompatActivity {
 
     //private FirebaseAuth mAuth;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mLugaresRef = mRootRef.child("Lugares");
-
+    DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
 
     @Override
@@ -59,6 +59,9 @@ public class SQLActivity extends AppCompatActivity {
                     lugar.Lat = (Double) postSnapshot.child("Lat").getValue();
                     lugar.Lon = (Double) postSnapshot.child("Lon").getValue();
                     Toast.makeText(SQLActivity.this, ""+lugar.Lon, Toast.LENGTH_SHORT).show();
+
+                    databaseHandler.addContact(lugar);
+                    Log.v("ContactoSQL", " Contactos: "+databaseHandler.getAllContacts());
 
                 }
             }

@@ -39,8 +39,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_LAT + " TEXT,"
-                + KEY_LON + " TEXT" + KEY_NOMBRE + " TEXT,"
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_LAT + " DOUBLE,"
+                + KEY_LON + " DOUBLE," + KEY_NOMBRE + " TEXT"
                 +")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
@@ -61,7 +61,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, lugar.getLat()); // Contact ID
+        //values.put(KEY_ID, lugar.getLat()); // Contact ID
         values.put(KEY_LAT, lugar.getLat()); // Contact ID
         values.put(KEY_LON, lugar.getLon()); // Contact Name
         values.put(KEY_NOMBRE, lugar.getNombre()); // Contact Phone Number
@@ -80,10 +80,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Lugar lugar = new Contact(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
+        Lugar lugar = new Lugar(cursor.getDouble(0), cursor.getDouble(1), cursor.getString(2));
         // return contact
-        return contact;
+        return lugar;
     }
 
     // Getting All Contacts
