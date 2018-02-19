@@ -6,6 +6,8 @@ package com.example.alejandroquiros.examen2t;
 
 public class Lugar {
 
+
+
     public Double Lat;
     public Double Lon;
     public String nombre;

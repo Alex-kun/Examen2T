@@ -17,6 +17,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
+    public int numId = 1;
     private static final int DATABASE_VERSION = 3;
 
     // Database Name
@@ -39,7 +40,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_LAT + " DOUBLE,"
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_LAT + " DOUBLE,"
                 + KEY_LON + " DOUBLE," + KEY_NOMBRE + " TEXT"
                 +")";
         db.execSQL(CREATE_CONTACTS_TABLE);
@@ -55,20 +56,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void deleteAll(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(DATABASE_NAME, null, null);
+
+    }
 
     // Adding new contact
     public void addContact(Lugar lugar) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        //values.put(KEY_ID, lugar.getLat()); // Contact ID
-        values.put(KEY_LAT, lugar.getLat()); // Contact ID
-        values.put(KEY_LON, lugar.getLon()); // Contact Name
-        values.put(KEY_NOMBRE, lugar.getNombre()); // Contact Phone Number
+        values.put(KEY_ID, ""); // Contact ID
+        values.put(KEY_LAT, lugar.getLat()); // Contact lat
+        values.put(KEY_LON, lugar.getLon()); // Contact lon
+        values.put(KEY_NOMBRE, lugar.getNombre()); // Contact name
 
         // Inserting Row
         db.insert(TABLE_CONTACTS, null, values);
         db.close(); // Closing database connection
+
+        numId++;
     }
 
     public Lugar getContact(int id) {
@@ -89,7 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Lugar> getAllContacts() {
         List<Lugar> contactList = new ArrayList<>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS + " LIMIT 2";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

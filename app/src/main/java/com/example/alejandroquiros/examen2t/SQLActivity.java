@@ -45,6 +45,8 @@ public class SQLActivity extends AppCompatActivity {
             }
         });
 
+        databaseHandler.deleteAll();
+
        //Descarga de datos de firebase
         mLugaresRef.addValueEventListener(new ValueEventListener() {
             @Override
