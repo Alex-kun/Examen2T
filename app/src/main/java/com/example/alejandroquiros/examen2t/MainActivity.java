@@ -7,6 +7,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
@@ -52,10 +53,14 @@ public class MainActivity extends AppCompatActivity {
         fadeOut.setStartOffset(1000);
         fadeOut.setDuration(1000);
 
+
         AnimationSet animation = new AnimationSet(false); //change to false
         animation.addAnimation(fadeIn);
         animation.addAnimation(fadeOut);
         loginButton.setAnimation(animation);
+
+        //Animation animation2 = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_point);
+        //loginButton.startAnimation(animation);
 
 
 
