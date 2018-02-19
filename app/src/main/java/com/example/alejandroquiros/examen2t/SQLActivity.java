@@ -65,7 +65,7 @@ public class SQLActivity extends AppCompatActivity {
                     //Toast.makeText(SQLActivity.this, ""+lugar.Lon, Toast.LENGTH_SHORT).show();
 
                     databaseHandler.addContact(lugar);
-                    Log.v("ContactoSQL", " Contactos: "+databaseHandler.getAllContacts());
+                    Log.v("ContactoSQL ", " Contactos: "+databaseHandler.getAllContacts());
 
                 }
                 startActivity(new Intent(SQLActivity.this, MapsActivity.class));
