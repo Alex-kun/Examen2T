@@ -51,14 +51,24 @@ public class SQLActivity extends AppCompatActivity {
                 Toast.makeText(SQLActivity.this, ""+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    //<YourClass> post = postSnapshot.getValue(<YourClass>.class);
-                    //Log.e("Get Data", post.<YourMethod>());
+                    Log.v("FirebaseData", ""+postSnapshot.child("lat").getValue());
+
+
+                    Lugar lugar = new Lugar();
+                    lugar.nombre = (String) postSnapshot.child("nombre").getValue();
+                    lugar.lat = (Long) postSnapshot.child("lat").getValue();
+                    lugar.lon = (Long) postSnapshot.child("lon").getValue();
+                    Toast.makeText(SQLActivity.this, ""+lugar.lon, Toast.LENGTH_SHORT).show();
+
                 }
             }
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
+        });
 
     }
 
