@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "LOGIN CORRECTO", Toast.LENGTH_SHORT).show();
                 //handleFacebookAccessToken(loginResult.getAccessToken());
 
+                startActivity(new Intent(MainActivity.this, SQLActivity.class));
+
             }
 
             @Override
