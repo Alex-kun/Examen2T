@@ -7,12 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class SQLActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
+    //private FirebaseAuth mAuth;
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mCochesRef = mRootRef.child("Lugares");
 
 
 
@@ -33,10 +42,25 @@ public class SQLActivity extends AppCompatActivity {
         });
 
        //Descarga de datos de firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
 
+        mCochesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<ArrayList<String>> gt = new GenericTypeIndicator<ArrayList<String>>() {};
+                ArrayList<String> messages = dataSnapshot.getValue(gt);
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
