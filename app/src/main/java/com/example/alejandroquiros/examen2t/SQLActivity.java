@@ -5,7 +5,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +23,7 @@ public class SQLActivity extends AppCompatActivity {
 
     //private FirebaseAuth mAuth;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mCochesRef = mRootRef.child("Lugares");
+    DatabaseReference mLugaresRef = mRootRef.child("Lugares");
 
 
 
@@ -42,25 +44,21 @@ public class SQLActivity extends AppCompatActivity {
         });
 
        //Descarga de datos de firebase
-
-
-
-        mCochesRef.addValueEventListener(new ValueEventListener() {
+        mLugaresRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<String>> gt = new GenericTypeIndicator<ArrayList<String>>() {};
-                ArrayList<String> messages = dataSnapshot.getValue(gt);
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.e("Count " ,""+snapshot.getChildrenCount());
+                Toast.makeText(SQLActivity.this, ""+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
 
-
-
-
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    //<YourClass> post = postSnapshot.getValue(<YourClass>.class);
+                    //Log.e("Get Data", post.<YourMethod>());
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
 
     }
 
