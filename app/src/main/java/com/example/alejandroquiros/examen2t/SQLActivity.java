@@ -39,7 +39,7 @@ public class SQLActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Hola :D", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -63,9 +63,6 @@ public class SQLActivity extends AppCompatActivity {
 
                     databaseHandler.addContact(lugar);
                     Log.v("ContactoSQL", " Contactos: "+databaseHandler.getAllContacts());
-
-
-
 
                 }
                 startActivity(new Intent(SQLActivity.this, MapsActivity.class));

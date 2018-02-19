@@ -10,9 +10,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    //Handler del SQL Lite
+    DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+
+        List<Lugar> lugares = databaseHandler.getAllContacts();
+
+
+        for(int l=0; l<=databaseHandler.getAllContacts().size(); l++){
+            LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
+            mMap.addMarker(new MarkerOptions().position(sydney).title(lugares.get(l).getNombre());
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
+        }
+
     }
 }
