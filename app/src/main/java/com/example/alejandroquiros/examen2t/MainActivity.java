@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
-        // If using in a fragment
-        //loginButton.setFragment(this);
+
+
 
         //ANIMACION QUE AÑADIMOS AL BOTON
         Animation fadeIn = new AlphaAnimation(0, 1);

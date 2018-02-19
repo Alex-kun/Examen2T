@@ -31,11 +31,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         lugares = databaseHandler.getAllContacts();
 
-        Toast.makeText(this, "Cantidad: "+lugares.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Cantidad de datos: "+lugares.size(), Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Nombre: "+lugares.get(0).getNombre(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Longitud: "+lugares.get(0).getLon(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Latitud: "+lugares.get(0).getLat(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -52,21 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
-
-
-
+        //AÑADIMOS LOS PINES DESDE SQL
 
         for(int l=0; l<lugares.size(); l++){
-
-            //Toast.makeText(this, "Nombre: "+lugares.get(l).getNombre(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, "Longitud: "+lugares.get(l).getLon(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, "Latitud: "+lugares.get(l).getLat(), Toast.LENGTH_SHORT).show();
             LatLng p = new LatLng(lugares.get(l).getLat(), lugares.get(l).getLon());
             mMap.addMarker(new MarkerOptions().position(p).title(lugares.get(l).getNombre()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(p));

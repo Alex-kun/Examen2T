@@ -57,7 +57,7 @@ public class SQLActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Log.v("FirebaseData", ""+postSnapshot.child("Lat").getValue());
 
-
+                    //Añadimos al SQl lo datos de firebase
                     Lugar lugar = new Lugar();
                     lugar.nombre = (String) postSnapshot.child("nombre").getValue();
                     lugar.Lat = (Double) postSnapshot.child("Lat").getValue();
