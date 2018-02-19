@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // If using in a fragment
         //loginButton.setFragment(this);
 
+        //ANIMACION QUE AÑADIMOS AL BOTON
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(1000);
